@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发送消息V4.6.19</title>
+<script>
+        function sendDesktopCommand() {
+            // 定义要发送的消息
+            const message = "//start E:/桌面";
+
+            // 通过 fetch 向服务器发送 POST 请求
+            fetch('/send-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: message })
+            }).then(response => response.text())
+              .then(data => {
+                  alert("已发送打开桌面命令！");
+              }).catch(error => {
+                  console.error('错误:', error);
+              });
+        }
+	function sendjituCommand() {
+            // 定义要发送的消息
+            const message = "//exit";
+
+            // 通过 fetch 向服务器发送 POST 请求
+            fetch('/send-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: message })
+            }).then(response => response.text())
+              .then(data => {
+                  alert("已发送截图命令，请在下载中查看！");
+              }).catch(error => {
+                  console.error('错误:', error);
+              });
+        }
+
+    </script>
+</head>
+<body>
+    <h1>发送消息到服务器</h1>
+<div>
+	快捷按钮：
+	<a href="/"><button>返回选择</button></a>
+	<button onclick="sendjituCommand()">向服务器请求截图</button>
+	</div>
+    <form id="messageForm">
+        <label for="message">请输入消息内容：</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">发送</button>
+   
+    </form>
+    <script>
+        document.getElementById('messageForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const message = document.getElementById('message').value;
+            fetch('/send-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: message })
+            }).then(response => response.text())
+              .then(data => alert(data))
+              .catch(error => console.error('错误:', error));
+        });
+    </script>
+</body>
+</html>
