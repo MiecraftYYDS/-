@@ -4,7 +4,7 @@
 
 本项目是运行在`Windows`上的一款可以让局域网用户
 
-- 上传文件（入口由密码保护**注意，这个是假保护，上传文件的链接是固定的，如果用户知道了链接，那么下一次不需要输入密码就可以进入，所以请注意**）
+- 上传文件（入口由密码保护**==注意，这个是假保护，上传文件的链接是固定的，如果用户知道了链接，那么下一次不需要输入密码就可以进入，所以请注意==**）
 
 - 下载文件
 
@@ -61,7 +61,7 @@ pip install flask werkzeug plyer pillow rich termcolor pyperclip
 >
 > 直接跳转到[**使用方式**](#section1)即可
 
-### 主程序
+### 主程序(app.py)
 
 > 主程序由python编写
 
@@ -188,7 +188,7 @@ if __name__ == "__main__":
     pyperclip.copy(full_address)
     clipboard_content = pyperclip.paste()
     print("--------服务端配置成功！--------（时间=", sj, "秒)")
-    print(colored(f"已将网址写入剪切板: {clipboard_content}", "red"))
+    print(colored(f"已将网址写入剪切板: {clipboard_content}\n初次使用？访问：http://{clipboard_content}/zn", "red"))
 
 # 添加日志记录函数
 def log_action(action, details):
@@ -207,6 +207,11 @@ def log_action(action, details):
 @app.route('/')
 def xz():
     return render_template('xz.html')
+
+#指南
+@app.route('/zn')
+def zn():
+    return render_template('zn.html')
 
 #消息
 @app.route('/xx')
@@ -839,6 +844,8 @@ WARNING: This is a development server. Do not use it in a production deployment.
 ###### 上传
 
 先选择文件，然后上传
+
+
 
 
 
