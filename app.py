@@ -120,7 +120,7 @@ if __name__ == "__main__":
     pyperclip.copy(full_address)
     clipboard_content = pyperclip.paste()
     print("--------服务端配置成功！--------（时间=", sj, "秒)")
-    print(colored(f"已将网址写入剪切板: {clipboard_content}", "red"))
+    print(colored(f"已将网址写入剪切板: {clipboard_content}\n初次使用？访问：http://{clipboard_content}/zn", "red"))
 
 # 添加日志记录函数
 def log_action(action, details):
@@ -139,6 +139,11 @@ def log_action(action, details):
 @app.route('/')
 def xz():
     return render_template('xz.html')
+
+#指南
+@app.route('/zn')
+def zn():
+    return render_template('zn.html')
 
 #消息
 @app.route('/xx')
