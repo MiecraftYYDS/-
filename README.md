@@ -45,6 +45,7 @@ pip install flask werkzeug plyer pillow rich termcolor pyperclip
         index.html
         indexapp.html
         xz.html
+        zn.html
 ```
 
 ## 详细代码
